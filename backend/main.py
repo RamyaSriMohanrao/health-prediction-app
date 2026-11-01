@@ -1,5 +1,6 @@
 """FastAPI app: patient CRUD API, plus the frontend page and its static files."""
 
+import logging
 import sqlite3
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
@@ -16,6 +17,9 @@ from backend.config import PROJECT_ROOT
 from backend.schemas import PatientInput, PatientOut, format_dob, format_errors
 
 FRONTEND_DIR = PROJECT_ROOT / "frontend"
+
+# Shows warnings from backend modules, such as an AI fallback, in the uvicorn terminal.
+logging.basicConfig(level=logging.INFO, format="%(levelname)s:     %(name)s - %(message)s")
 
 
 @asynccontextmanager
