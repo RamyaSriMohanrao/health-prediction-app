@@ -160,6 +160,25 @@ class PatientInput(BaseModel):
         return number
 
 
+class PatientOut(BaseModel):
+    """A saved patient as returned by the API, with the date of birth shown as dd/mm/yyyy."""
+
+    id: int
+    full_name: str
+    dob: str
+    email: str
+    glucose: float
+    haemoglobin: float
+    cholesterol: float
+    remarks: str | None
+    created_at: str | None
+
+
+def format_dob(iso_dob: str) -> str:
+    """Turn a stored ISO date (YYYY-MM-DD) into the display format dd/mm/yyyy."""
+    return date.fromisoformat(iso_dob).strftime("%d/%m/%Y")
+
+
 def format_errors(errors: Sequence[Mapping[str, Any]]) -> list[dict[str, str]]:
     """Turn Pydantic error details into the [{field, message}] list the frontend shows."""
     formatted = []
