@@ -1,0 +1,4 @@
+/* Gives the remark text room to wrap instead of squeezing into a narrow column. */
+.remarks-cell {
+  min-width: 18rem;
+}
